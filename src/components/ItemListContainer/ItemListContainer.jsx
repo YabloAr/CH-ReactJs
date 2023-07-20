@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import ItemList from "../ItemList/ItemList";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
+import {doc, getDoc, getFirestore} from "firebase/firestore";
 
 //En el ítemlistcontainer el fetch
 
@@ -10,7 +11,7 @@ const ItemListContainer = () => {
   const [data, setData] = useState([]);
   const [err, setErr] = useState("no error");
   const [loading, setLoading] = useState(false);
-  const { categoriaid } = useParams();
+  const {categoriaid} = useParams();
 
   console.log(categoriaid);
 
@@ -21,9 +22,7 @@ const ItemListContainer = () => {
       .then((response) => response.json())
       .then((data) => {
         if (categoriaid !== undefined) {
-          const productosFiltrados = data.filter(
-            (prod) => prod.category === categoriaid
-          );
+          const productosFiltrados = data.filter((prod) => prod.category === categoriaid);
 
           setData(productosFiltrados);
         } else {
@@ -45,3 +44,9 @@ const ItemListContainer = () => {
 };
 
 export default ItemListContainer;
+
+// useEffect(() => {
+//   const db = getFirestore();
+//   const queryDoc = doc(db, "productos", "2OX2b8pT5J2QhhDlvhzx"); // 3 argumentos
+//   getDoc(queryDoc).then((resp) => console.log(resp));
+// }, []);

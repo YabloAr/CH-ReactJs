@@ -4,17 +4,11 @@
 import React from "react";
 import Item from "../Item/Item";
 
-const ItemList = ({ apiData }) => {
+const ItemList = ({apiData}) => {
   return (
     <>
       {apiData.map((product) => (
-        <Item
-          titulo={product.title}
-          imgUrl={product.image}
-          info={product.description}
-          key={product.id}
-          id={product.id}
-        />
+        <Item titulo={product.title} imgUrl={product.image} info={product.description} key={product.id} id={product.id} />
       ))}
     </>
   );
